@@ -4,7 +4,7 @@ import threading
 
 import iterate
 
-callsign = "[US-E]"
+callsign = "[AS-JP]"
 
 # create a socket object
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -26,9 +26,8 @@ def handle_server_messages():
             message_parsed = iterate.command(message)
 
             if "IGNORE" not in message_parsed["command"]:
-                if message_parsed["from"] != callsign:
-                    if message_parsed["to"] == callsign or message_parsed["to"] == "[ALL]":
-                        os.system(message_parsed["command"])
+                if message_parsed["to"] == callsign or message_parsed["to"] == "[ALL]":
+                    os.system(message_parsed["command"])
 
         except:
             None
