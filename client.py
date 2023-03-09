@@ -1,10 +1,11 @@
 import os
 import socket
 import threading
+import subprocess
 
 import iterate
 
-callsign = "[AS-JP]"
+callsign = "[US-E]"
 
 # create a socket object
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,15 +23,16 @@ def handle_server_messages():
         if not data:
             break
         message = data.decode()
-        try:
-            message_parsed = iterate.command(message)
 
-            if "IGNORE" not in message_parsed["command"]:
-                if message_parsed["to"] == callsign or message_parsed["to"] == "[ALL]":
-                    os.system(message_parsed["command"])
-
-        except:
-            None
+        if "IGNORE" not in message_parsed["command"]:
+            try:
+                message_parsed = iterate.command(message)
+                if message_parsed["from"] != callsign:
+                    if message_parsed["to"] == callsign or message_parsed["to"] == "[ALL]":
+                        # os.system(message_parsed["command"])
+                        out = f'{callsign} --> {message_parsed}:{subprocess.check_output(message_parsed["command"])} IGNORE'
+            except:
+                None
 
 
 # start a new thread to handle server messages

@@ -1,5 +1,6 @@
 import socket
 import threading
+import boto3
 
 # list of connected client sockets
 client_sockets = []
