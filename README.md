@@ -20,7 +20,7 @@
 | Oregon Client         | :white_check_mark: |
 | Ohio Client           | :white_check_mark: |
 | Central Canada Client | :white_check_mark: |
-| Sao Palo              | :x:
+| Sao Paulo              | :x:
 | Frankfurt Client      | :white_check_mark: |
 | Stockholm Client      | :white_check_mark: |
 | Mumbai Client         | :x:                |
