@@ -9,6 +9,7 @@
 | Quebec    | Canada        | North America | :white_check_mark: |
 | Sao Paulo | Brazil        | South America | :white_check_mark: |
 | Frankfurt | Germany       | Eroupe        | :white_check_mark: |
+| London    | Britan        | Eroupe        | :white_check_mark: |
 | Stockholm | Sweden        | Eroupe        | :white_check_mark: |
 | Mumbai    | India         | Asia          | :x:                |
 | Tokyo     | Japan         | Asia          | :x:                |
