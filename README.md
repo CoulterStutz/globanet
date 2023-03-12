@@ -2,6 +2,8 @@
 
 **In Development**
 ## The Cast!
+
+### Current Locations
 | Location  | Country       | Continent     | Status             |
 |-----------|---------------|---------------|--------------------|
 | Oregon    | United States | North America | :white_check_mark: |
@@ -11,9 +13,15 @@
 | Frankfurt | Germany       | Eroupe        | :white_check_mark: |
 | London    | Britan        | Eroupe        | :white_check_mark: |
 | Stockholm | Sweden        | Eroupe        | :white_check_mark: |
-| Mumbai    | India         | Asia          | :x:                |
-| Tokyo     | Japan         | Asia          | :x:                |
-| Sydney    | Australia     | South Asia    | :x:                |
+| Mumbai    | India         | Asia          | :white_check_mark: |
+| Tokyo     | Japan         | Asia          | :white_check_mark: |
+| Sydney    | Australia     | South Asia    | :white_check_mark: |
+
+### Possible Future Locations
+| City   | Continent | Region Name |
+|--------|-----------|-------------|
+| Aragón | Eroupe    | eu-south-1  |
+| Paris  | Eroupe    | eu-west-3   |
 
 
 ## Script Glossery
