@@ -1,3 +1,34 @@
+"""
+PROGRAM NAME: Server.py
+PROGRAM POURPOSE: To serve as the main socket for the clients to connect to and exchange data [see more below]
+DATE WRITTEN: 3-8-23
+PROGRAMMER: Coulter C. Stutz
+"""
+
+"""
+How do I work, step by step visuals!
+
+#1 [server.py] starts
+
+#2 Clients connect on 
+
+    [client.py(us-w)]       --->
+    [client.py(us-e)]       --->
+    [client.py(ca-c)]       --->
+    [client.py(eu-frkf)]    --->
+    [client.py(eu-stkh)]    --->    [server.py]
+    [client.py(ap-mb)]      --->
+    [client.py(ap-jp)]      --->
+    [client.py(ap-sdy)]     --->
+
+#3 Clients exchange info
+    US-W to AS-JPN
+    #1 [US-W] --> [Server] US-W SENDS TO SERVER
+    #2 [ALL]  <-- [Server] SERVER BEAMS TO ALL
+    #3 [AS-JP] --> [US-W]  AS-JP PICKS REQUEST UP
+
+"""
+
 import socket
 import threading
 import boto3
@@ -28,7 +59,7 @@ def handle_client(client_socket, client_address):
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # get the local machine name
-host = socket.gethostname()
+host = "0.0.0.0"
 
 # bind the socket to a public host, and a well-known port
 server_socket.bind((host, 8000))
