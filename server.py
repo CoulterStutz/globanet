@@ -32,6 +32,26 @@ How do I work, step by step visuals!
 import socket
 import threading
 import boto3
+import peer_management as pm 
+import time
+
+# Config
+pm_start_all_with_server = False
+
+"""
+if pm_start_all_with_server:
+    pm.start_all()
+else:
+    cmd = input("Which instances would you like to start [region name]: ")
+
+    while True:
+        if cmd in pm.regions and cmd != "quit":
+            instance_ids[pm.regions.index(cmd)]
+        elif cmd == "quit":
+            break
+        else:
+            print("Instance Not Found!")"""
+
 
 # list of connected client sockets
 client_sockets = []
