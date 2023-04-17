@@ -15,6 +15,3 @@ def stop_all():
             ec2 = boto3.client("ec2", region_name=region)
             response = ec2.stop_instances(InstanceIds=[instance_id], DryRun=False)
             print(response)
-
-start_all()
-stop_all()
