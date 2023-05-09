@@ -1,5 +1,6 @@
 import socket
 import json
+import os
 
 HOST = '127.0.0.1'  # The server's hostname or IP address
 PORT = 65432        # The port used by the server
@@ -39,4 +40,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # Check if the message is for this client
         response_message = json.loads(response)
         if response_message['To'] == client_name:
-            None    # command parser
+            if response_message['Request_Type'] == "echo":
+                print(response_message['Request'])
+            elif response_message['Request_Type'] == "cmd":
+                os.system(response_message['Request'])
+        else:
+            print(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
