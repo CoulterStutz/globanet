@@ -4,10 +4,8 @@ import os
 
 HOST = '127.0.0.1'  # The server's hostname or IP address
 PORT = 65432        # The port used by the server
-client_name = 'us-n'  # The name of this client
+client_name = 'us-w'  # The name of this client
 data_path = '/data'  # the name of the datapath
-
-print(f"\n{client_name}'s Console <3\n")
 
 def encode_message(from_, to, request_type, request):
     message = {'From': from_, 'To': to, 'Request_Type': request_type, 'Request': request}
