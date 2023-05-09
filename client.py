@@ -7,6 +7,11 @@ PORT = 65432        # The port used by the server
 client_name = 'us-w'  # The name of this client
 data_path = '/data'  # the name of the datapath
 
+blockcount = len(os.listdir(datapath)) # returns the blockcount
+
+def get_block_count():
+    return blockcount
+
 def encode_message(from_, to, request_type, request):
     message = {'From': from_, 'To': to, 'Request_Type': request_type, 'Request': request}
     return json.dumps(message).encode()
