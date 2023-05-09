@@ -39,7 +39,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         # Check if the message is for this client
         response_message = json.loads(response)
-        if response_message['To'] == client_name:
+        if response_message['To'] == client_name or response_message['To'] == "all":
             if response_message['Request_Type'] == "echo":
                 print(response_message['Request'])
             elif response_message['Request_Type'] == "cmd":
