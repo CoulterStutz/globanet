@@ -1,61 +1,42 @@
-"""
-PROGRAM NAME: Client.py
-PROGRAM POURPOSE: To serve as a client for the global network [see more below]
-DATE WRITTEN: 3-8-23
-PROGRAMMER: Coulter C. Stutz
-"""
-
-import os, sys
 import socket
-import threading
-import subprocess
-import iterate
+import json
 
-callsign = f"[{sys.argv[1]}]"
+HOST = '127.0.0.1'  # The server's hostname or IP address
+PORT = 65432        # The port used by the server
+client_name = 'us-n'  # The name of this client
 
-# create a socket object
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print(f"\n{client_name}'s Console <3\n")
 
-# get the local machine name
-host = "107.2.237.13"
+def encode_message(from_, to, request_type, request):
+    message = {'From': from_, 'To': to, 'Request_Type': request_type, 'Request': request}
+    return json.dumps(message).encode()
 
-# connect to the server socket
-client_socket.connect((host, 8000))
+# Create a TCP/IP socket and connect to the server
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
 
-# function for handling server messages
-def handle_server_messages():
+    # Start a loop to listen for user input and send messages to the server
     while True:
-        data = client_socket.recv(1024)
-        if not data:
-            break
-        message = data.decode()
+        input_str = input('> ')
 
-        try:
-            message_parsed = iterate.command(message)
-            if "IGNORE" not in message_parsed["command"]:
-                    if message_parsed["from"] != callsign:
-                        if message_parsed["to"] == callsign or message_parsed["to"] == "[ALL]":
-                            os.system(message_parsed["command"])
-                            out = f'{callsign} --> {message_parsed["from"]}:{subprocess.check_output(message_parsed["command"])} IGNORE'
-                            client_socket.sendall(out.encode())
-            else:
-                print(f'{message_parsed["from"]} --> {message_parsed["to"]}:{message_parsed["command"]}')
-        except:
-            None
+        # Parse the input into a message and send it to the server
+        input_parts = input_str.split()
+        if len(input_parts) < 2:
+            print('Invalid input format. Please use: from to type command')
+            continue
 
-        print(f"\n{message}")
+        from_, to, request_type = input_parts[:3]
+        from_ = client_name
+        request = ' '.join(input_parts[3:])
+        message_data = encode_message(from_, to, request_type, request)
+        s.sendall(message_data)
 
 
-# start a new thread to handle server messages
-server_thread = threading.Thread(target=handle_server_messages)
-server_thread.start()
+        # Wait for the server's response and decode it
+        response_data = s.recv(1024)
+        response = response_data.decode()
 
-while True:
-    # read input from the user
-    message = input(f"{callsign}@callsign:>>")
-    if message == "clear":
-        os.system("clear")
-    else:
-        message = f"{callsign} --> " + message
-        print(message)
-        client_socket.sendall(message.encode())
+        # Check if the message is for this client
+        response_message = json.loads(response)
+        if response_message['To'] == client_name:
+            None    # command parser
