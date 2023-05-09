@@ -5,6 +5,14 @@ import json
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
+verify_chain_frequency = 100 # after x requests, the server will run a chain verification
+
+def get_chain_verification_frequency():
+    return verify_chain_frequency
+
+def set_chain_verification_frequency(chain_frequency:int):
+    verify_chain_frequency = chain_frequency
+
 def handle_client(conn, addr):
     print(f'Connected by {addr}')
 
