@@ -1,8 +1,0 @@
-2023-05-10 10:10:30.735923: SERVER --> all: welcome us-w
-2023-05-10 10:11:23.065100: SERVER --> all: welcome us-w
-2023-05-10 10:11:23.065100: SERVER --> all: welcome us-w
-2023-05-10 10:11:34.129066: SERVER --> all: welcome us-w    This is a sample of the latest execution logs
-2023-05-10 10:13:17.848744: SERVER --> all: welcome us-w
-2023-05-10 10:21:28.989330: SERVER --> all: welcome us-w
-2023-05-10 10:24:00.469181: SERVER --> all: welcome us-w
-2023-05-10 10:24:34.286165: SERVER --> all: welcome us-w
