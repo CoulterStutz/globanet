@@ -1,7 +1,12 @@
 # Python based global AWS network
 
-**In Development**
-## The Cast!
+### Commands 
+|   Command    |                    What it does                 |
+|--------------|-------------------------------------------------|
+| echo         | Repeats something on the peers side             |
+| cmd          | Runs the request as a command in command prompt |
+| areyouawake  | Checks if a peer is awake                       |
+| response     | Standard peer response                          |
 
 ### Current Locations
 | Location  | Country       | Continent     | Status             |
@@ -9,23 +14,14 @@
 | Oregon    | United States | North America | :white_check_mark: |
 | Ohio      | United States | North America | :white_check_mark: |
 | Quebec    | Canada        | North America | :white_check_mark: |
-| Sao Paulo | Brazil        | South America | :white_check_mark: |
 | Frankfurt | Germany       | Eroupe        | :white_check_mark: |
-| London    | Britan        | Eroupe        | :white_check_mark: |
 | Stockholm | Sweden        | Eroupe        | :white_check_mark: |
 | Mumbai    | India         | Asia          | :white_check_mark: |
 | Tokyo     | Japan         | Asia          | :white_check_mark: |
 | Sydney    | Australia     | South Asia    | :white_check_mark: |
 
-### Possible Future Locations
-| City   | Continent | Region Name |
-|--------|-----------|-------------|
-| Aragón | Eroupe    | eu-south-1  |
-| Paris  | Eroupe    | eu-west-3   |
-
 
 ## Script Glossery
-
 | Script             | Usage                                                                                                                                        |
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | server.py          | bundles it all together and enforces blockchain esc peer syncing + is a homebase for the network                                             |
