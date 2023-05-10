@@ -50,23 +50,28 @@ def verify_login_hash(client_name, hash, conn, addr):
                 conn.send("Failed To Login: Invalid Hash\n".encode())
                 print(f"Verifying the identity of {client_name}:{addr} {colored('FAILED', 'red')}")
                 conn.close()
+                return "Failed"
             else:
                 c += 1
         except IndexError:
-            None
-            # Return retry then have it start the process again
+            return "Retry"
 
     if c == i:
         approved_clients.add(conn)
         conn.send("Logged In Successfully!\n".encode())
         print(f"{colored('Verified', 'green')} the identity of {client_name}:{addr}")
         broadcast_new_user(client_name)
+        return True
 
 def handle_client(conn, addr):
     print(f'Connected by {addr}\n')
     data = conn.recv(1024)
     d = data.decode().split()
-    verify_login_hash(d[0], d[1], conn, addr)
+    
+    verify = verify_login_hash(d[0], d[1], conn, addr)
+    
+    if  verify == "Retry":
+        verify_login_hash(d[0], d[1], conn, addr)
 
     while True:
         data = conn.recv(1024)
