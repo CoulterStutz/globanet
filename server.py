@@ -70,7 +70,8 @@ def handle_client(conn, addr):
     
     verify = verify_login_hash(d[0], d[1], conn, addr)
     
-    if  verify == "Retry":
+    if verify == "Retry":
+        conn.send("Retry".encode())
         verify_login_hash(d[0], d[1], conn, addr)
 
     while True:
