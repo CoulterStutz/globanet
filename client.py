@@ -1,30 +1,104 @@
-import socket
-import json
-import os
+"""
+PROGRAM NAME: client.py
+PROGRAM POURPOSE: To serve as the client of the global network
+DATE WRITTEN: 5/10/23
+Programmer: Coulter C. Stutz
+"""
 
-HOST = '127.0.0.1'  # The server's hostname or IP address
-PORT = 65432        # The port used by the server
-client_name = 'us-w'  # The name of this client
-data_path = '/data'  # the name of the datapath
+import socket, select, json
+import os, sys, datetime
+import hashlib
+import threading
 
-blockcount = len(os.listdir(datapath)) # returns the blockcount
+HOST = '127.0.0.1'
+PORT = 65432
+debug = False
 
-def get_block_count():
-    return blockcount
+client_name = str()
+data_file = str()
+peer_type = str()
+host_peer_explorer = bool()
+peer_pass = str()
+
+if debug == True:
+    try:
+        client_name = sys.argv[1]
+    except IndexError:
+        None
+else:
+    config = json.loads(open("peer_information.json", "r").read())
+    client_name = config["PeerName"]
+    peer_type = config["PeerType"]
+    host_peer_explorer = config["HostPeerExplorer"]
+    peer_pass = config["PeerPass"]
+    data_file = config["DataFile"]
+
+
+def generate_login_hash():
+    h = '-'.join(
+        [str(datetime.datetime.now().month), str(datetime.datetime.now().day), str(datetime.datetime.now().hour),
+         str(datetime.datetime.now().minute), client_name, peer_pass])
+    return hashlib.sha256(h.encode()).digest()
+
+
+login_hash = generate_login_hash()
+
 
 def encode_message(from_, to, request_type, request):
     message = {'From': from_, 'To': to, 'Request_Type': request_type, 'Request': request}
     return json.dumps(message).encode()
 
-# Create a TCP/IP socket and connect to the server
+
+def log(message):
+    with open(data_file, 'a') as f:
+        log_str = f"{message['From']} --> {message['To']}: {message['Request_Type']} {message['Request']}"
+        f.write(f"{datetime.datetime.now()}: {log_str}\n")
+        print(log_str)
+
+
+def handle_server_messages():
+    response_data = s.recv(1024)
+    response = response_data.decode()
+    print(response)
+
+    response_message = json.loads(response)
+
+    if response_message['From'] == "SERVER":
+        if response_message['To'] == client_name or response_message['To'] == "all":
+            if response_message['Request_Type'] == "welcome":
+                print(f"{response_message['Request']} has successfully connected to the node")
+
+    if response_message['To'] == client_name or response_message['To'] == "all":
+        if response_message['Request_Type'] == "echo":
+            print(response_message['Request'])
+        elif response_message['Request_Type'] == "cmd":
+            os.system(response_message['Request'])
+            log(response_message)
+        else:
+            log(response_message)
+
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
 
-    # Start a loop to listen for user input and send messages to the server
-    while True:
-        input_str = input('> ')
+    print(f"{client_name}'s Console <3")
+    s.send(f'{client_name} {login_hash}'.encode())
+    print(login_hash)
+    response_data = s.recv(1024)
+    response = response_data.decode()
 
-        # Parse the input into a message and send it to the server
+    if response == "Failed To Login: Invalid Hash":
+        exit(1)
+    else:
+        print(response)
+
+    inputs = [s]
+
+    server_thread = threading.Thread(target=handle_server_messages)
+    server_thread.start()
+
+    while True:
+        input_str = input('>> ')
         input_parts = input_str.split()
         if len(input_parts) < 2:
             print('Invalid input format. Please use: from to type command')
@@ -35,25 +109,3 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         request = ' '.join(input_parts[3:])
         message_data = encode_message(from_, to, request_type, request)
         s.sendall(message_data)
-
-
-        # Wait for the server's response and decode it
-        response_data = s.recv(1024)
-        response = response_data.decode()
-        
-        def log():
-            print(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
-            f = open(f'/{os.listdir(data_path)[-0]}', 'w+')
-            f.writelines(f"{response_message['From']} --> {response_message['To']}: {response_message['Request_Type']} {response_message['Request']}")
-            f.close()
-
-        # Check if the message is for this client
-        response_message = json.loads(response)
-        if response_message['To'] == client_name or response_message['To'] == "all":
-            if response_message['Request_Type'] == "echo":
-                print(response_message['Request'])
-            elif response_message['Request_Type'] == "cmd":
-                os.system(response_message['Request'])
-            log()
-        else:
-            log()
