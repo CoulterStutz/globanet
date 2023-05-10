@@ -1,12 +1,13 @@
 # Python based global AWS network
 
 ### Commands 
-|   Command    |                    What it does                 |
-|--------------|-------------------------------------------------|
-| echo         | Repeats something on the peers side             |
-| cmd          | Runs the request as a command in command prompt |
-| areyouawake  | Checks if a peer is awake                       |
-| response     | Standard peer response                          |
+|   Command           |             What it does                        |  Implemented  |
+|---------------------|-------------------------------------------------|---------------|
+| echo                | Repeats something on the peers side             |      Yes      |
+| cmd                 | Runs the request as a command in command prompt |      Yes      |
+| areyouawake         | Checks if a peer is awake                       |      Yes      |             
+| response            | Standard peer response                          |      Yes      |
+| cloud-translate     | Translates messages into languages              |      No       |
 
 ### Current Locations
 | Location  | Country       | Continent     | Status             |
