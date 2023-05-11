@@ -49,7 +49,7 @@ def encode_message(from_, to, request_type, request):
 
 def log(message):
     with open(data_file, 'a') as f:
-        log_str = f"{message['From']} --> {message['To']}: {message['Request_Type']} {message['Request']}"
+        log_str = f"\n{message['From']} --> {message['To']}: {message['Request_Type']} {message['Request']}"
         f.write(f"{datetime.datetime.now()}: {log_str}\n")
         print(log_str)
 

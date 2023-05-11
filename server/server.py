@@ -3,8 +3,10 @@ import hashlib
 import socket
 import threading
 import json
-import boto3
+import peer_management as pm
 from termcolor import colored
+
+pm.return_ip_addresses()
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
@@ -16,7 +18,6 @@ approved_clients = set()
 
 def get_chain_verification_frequency():
     return verify_chain_frequency
-
 
 def set_chain_verification_frequency(chain_frequency: int):
     verify_chain_frequency = chain_frequency
