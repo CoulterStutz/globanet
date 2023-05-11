@@ -1,1 +1,1 @@
-{"PeerName": "us-w", "PeerType": "full", "HostPeerExplorer": false, "PeerPass": "TestPassword", "DataFile": "peer1.txt"}
+{"PeerName": "us-n", "PeerType": "full", "HostPeerExplorer": true, "PeerPass": "TestPassword", "DataFile": "peer1.txt"}
