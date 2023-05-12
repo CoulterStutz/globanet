@@ -1,0 +1,74 @@
+2023-05-12 08:05:11.356873: 
+SERVER --> all: welcome us-e
+2023-05-12 08:06:42.735463: 
+us-n --> us-n: aws-translate [en-es, "Hello World"]
+2023-05-12 08:08:44.377488: 
+SERVER --> all: welcome us-e
+2023-05-12 08:11:49.907100: 
+SERVER --> all: welcome us-e
+2023-05-12 08:33:19.731137: 
+SERVER --> all: welcome us-e
+2023-05-12 08:36:08.298238: 
+SERVER --> all: welcome us-e
+2023-05-12 08:37:53.960751: 
+SERVER --> all: welcome us-e
+2023-05-12 08:39:12.609746: 
+SERVER --> all: welcome us-e
+2023-05-12 08:42:06.692605: 
+SERVER --> all: welcome us-e
+2023-05-12 08:42:52.758647: 
+SERVER --> all: welcome us-e
+2023-05-12 08:47:47.876231: 
+SERVER --> all: welcome us-e
+2023-05-12 08:48:52.049029: 
+SERVER --> all: welcome us-e
+2023-05-12 08:49:26.572498: 
+SERVER --> all: welcome us-e
+2023-05-12 08:57:19.325536: 
+SERVER --> all: welcome us-e
+2023-05-12 08:57:37.355964: 
+us-e --> us-e: aws-translate[en, de, "Hello World"]
+2023-05-12 08:58:22.759973: 
+SERVER --> all: welcome us-e
+2023-05-12 09:00:01.185908: 
+SERVER --> all: welcome us-e
+2023-05-12 09:00:52.069425: 
+SERVER --> all: welcome us-e
+2023-05-12 09:02:22.370796: 
+SERVER --> all: welcome us-e
+2023-05-12 09:02:58.576745: 
+SERVER --> all: welcome us-e
+2023-05-12 09:03:01.645155: 
+us-e --> us-e: aws-translate [en-US, de-DE, "Hello World"]
+2023-05-12 09:03:01.647474: 
+us-e --> us-e: response {'TranslatedText': '„Hallo Welt“', 'SourceLanguageCode': 'en', 'TargetLanguageCode': 'de', 'AppliedSettings': {'Formality': 'INFORMAL', 'Profanity': 'MASK'}, 'ResponseMetadata': {'RequestId': 'e25a8f84-2d60-4540-88a2-4cc0d4d69cee', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': 'e25a8f84-2d60-4540-88a2-4cc0d4d69cee', 'cache-control': 'no-cache', 'content-type': 'application/x-amz-json-1.1', 'content-length': '151', 'date': 'Fri, 12 May 2023 15:03:01 GMT'}, 'RetryAttempts': 0}}
+2023-05-12 09:05:29.729421: 
+SERVER --> all: welcome us-e
+2023-05-12 09:06:38.034809: SERVER --> all: welcome us-e
+2023-05-12 09:08:01.085700: us-e --> us-e: aws-translate [EN, DE, "Hello World"]
+2023-05-12 09:08:22.018313: us-e --> us-e: translate [EN, DE, "Hello World"]
+2023-05-12 09:08:22.019311: us-e --> us-e: response „Hallo Welt“
+2023-05-12 09:08:58.495890: SERVER --> all: welcome us-e
+2023-05-12 09:09:09.959851: us-e --> us-e: translate [EN, DE, "Hello World"]
+2023-05-12 09:09:09.959851: us-e --> us-e: response Hallo Welt
+2023-05-12 09:10:58.830598: SERVER --> all: welcome us-e
+2023-05-12 09:12:12.479209: SERVER --> all: welcome us-e
+2023-05-12 09:14:11.936310: SERVER --> all: welcome us-e
+2023-05-12 09:15:25.049967: SERVER --> all: welcome us-e
+2023-05-12 09:17:07.866284: SERVER --> all: welcome us-e
+2023-05-12 09:19:01.320226: SERVER --> all: welcome us-e
+2023-05-12 09:19:28.544833: SERVER --> all: welcome us-e
+2023-05-12 09:21:50.304469: SERVER --> all: welcome us-e
+2023-05-12 09:22:06.958564: us-e --> us-e: detect-text "Hello World"
+2023-05-12 09:22:34.893000: us-e --> us-e: detect-language "Hello World"
+2023-05-12 09:22:34.893000: us-e --> us-e: response en:0.9372256994247437% 
+2023-05-12 09:24:08.285753: SERVER --> all: welcome us-e
+2023-05-12 09:24:57.784146: SERVER --> all: welcome us-e
+2023-05-12 09:25:25.999551: us-e --> us-e: translate [EN, DE, "Hello World"]
+2023-05-12 09:25:25.999551: us-e --> us-e: response Hallo Welt
+2023-05-12 09:25:41.814171: us-e --> us-e: detect-language "Hallo Welt"
+2023-05-12 09:25:41.815167: us-e --> us-e: response de: 0.9873958230018616% 
+2023-05-12 09:26:43.847353: us-n --> us-e: translate [ES, EN, "Hola!"]
+2023-05-12 09:26:43.847353: us-e --> us-n: response Hola!
+2023-05-12 09:27:27.390483: us-n --> us-e: translate [DE, EN, "Hallo Welt"]
+2023-05-12 09:27:27.390483: us-e --> us-n: response Hello world
