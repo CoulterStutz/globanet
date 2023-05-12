@@ -54,6 +54,8 @@ elif client_name == "as-jpn":
     aws_region = "ap-northeast-1"
 elif client_name == "as-syd":
     aws_region = "ap-southeast-2"
+elif client_name == "sa-e":
+    aws_region = "sa-east-1"
 
 def generate_login_hash():
     h = '-'.join(
