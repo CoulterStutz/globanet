@@ -1,3 +1,11 @@
+"""
+PROGRAM NAME: server.py
+PROGRAM POURPOSE: to act as a server for the network
+DATE WRITTEN: 5/10/23
+PROGRAMMER:
+"""
+
+
 import datetime
 import hashlib
 import socket
@@ -110,6 +118,7 @@ def handle_client(conn, addr):
 # Create a TCP/IP socket and bind it to the port
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
+    print(f"Socket Binded to {HOST}:{PORT}")
     s.listen(5)
 
     clients = set()
