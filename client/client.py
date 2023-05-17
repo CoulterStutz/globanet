@@ -12,7 +12,10 @@ from random import random
 import boto3, botocore
 import references
 
-HOST = '18.144.176.16'
+def get_host_ip():
+    None
+
+HOST = get_host_ip()
 PORT = 65432
 debug = False
 
