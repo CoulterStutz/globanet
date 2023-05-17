@@ -1,7 +1,7 @@
 """
 PROGRAM NAME: client.py
 PROGRAM POURPOSE: To serve as the client of the global network
-DATE WRITTEN: 5/10/23
+DATE WRITTEN: 5/10/23-5/17/23
 Programmer: Coulter C. Stutz
 """
 
@@ -12,8 +12,10 @@ from random import random
 import boto3, botocore
 import references
 
+
+host_instance_id = "i-00829bcc7e9076ae7"
 def get_host_ip():
-    None
+    client = boto3.client('ec2', region_name="us-west-1")
 
 HOST = get_host_ip()
 PORT = 65432
