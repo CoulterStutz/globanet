@@ -17,12 +17,4 @@ def stop_all():
             response = ec2.stop_instances(InstanceIds=[instance_id], DryRun=False)
             print(response)
 
-def get_public_ips(instance_ids, regions):
-    ips = []
-    for region in regions:
-        ec2 = boto3.client('ec2', region_name=region)
-        response = ec2.describe_instances(InstanceIds=instance_ids)
-        for reservation in response['Reservations']:
-            for instance in reservation['Instances']:
-                ips.append(instance['PublicIpAddress'])
-    return ips
+# get_instance_ips removed since it is called in its appropriate place
