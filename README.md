@@ -7,7 +7,7 @@
 | cmd                 | Runs the request as a command in command prompt |      Yes      |
 | areyouawake         | Checks if a peer is awake                       |      Yes      |             
 | response            | Standard peer response                          |      Yes      |
-| cloud-translate     | Translates messages into languages              |      No       |
+| cloud-translate     | Translates messages into languages              |      Yes      |
 
 ### Current Locations
 | Location  | Country       | Continent     | Status             |
