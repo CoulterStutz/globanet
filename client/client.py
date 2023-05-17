@@ -12,7 +12,7 @@ from random import random
 import boto3, botocore
 import references
 
-HOST = '107.2.237.13'
+HOST = '18.144.176.16'
 PORT = 65432
 debug = False
 
