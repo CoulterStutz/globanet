@@ -12,10 +12,39 @@ from random import random
 import boto3, botocore
 import references
 
+"""
+         _nnnn_
+        dGGGGMMb
+       @p~qp~~qMb
+       M|@||@) M|
+       @,----.JM|
+      JS^\__/  qKL
+     dZP        qKRb            FOR USE ON LINUX SERVERS
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_)      \.___.,|     .'
+\____   )MMMMMP|   .'
+     `-'       `--' hjm
+"""
+
 
 host_instance_id = "i-00829bcc7e9076ae7"
 def get_host_ip():
     client = boto3.client('ec2', region_name="us-west-1")
+    response = client.describe_instances(
+        Filters=["ip-address"]
+        InstanceIds=[
+            host_instance_id,
+        ],
+        DryRun=False,
+        MaxResults=123,
+    )
+    
+    return response
 
 HOST = get_host_ip()
 PORT = 65432
